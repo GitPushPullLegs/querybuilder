@@ -55,6 +55,13 @@ class QueryBuilder:
 
     @property
     def query(self) -> str:
+        """Generates a composed query.
+
+        Right now it's just an SQLite query but I want to add in a return for different databases.
+
+        Returns:
+             A string SQL query.
+        """
         parts = ["SELECT " + (", ".join(self._query['SELECT'])).replace("DISTINCT,", "DISTINCT"),
                  "FROM " + ("\n".join(self._query['FROM'])),
                  ("WHERE " + ("\n".join(self._query['WHERE']))) if self._query['WHERE'] else "",
