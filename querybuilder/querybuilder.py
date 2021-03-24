@@ -62,10 +62,10 @@ class QueryBuilder:
         Returns:
              A string SQL query.
         """
-        parts = ["SELECT " + (", ".join(self._query['SELECT'])).replace("DISTINCT,", "DISTINCT"),
-                 "FROM " + ("\n".join(self._query['FROM'])),
-                 ("WHERE " + ("\n".join(self._query['WHERE']))) if self._query['WHERE'] else "",
-                 ("GROUP BY " + (", ".join(self._query['GROUP BY']))) if self._query['GROUP BY'] else "",
-                 ("ORDER BY " + (", ".join(self._query['ORDER BY']))) if self._query['ORDER BY'] else "",
+        parts = ["SELECT " + ", ".join(self._query['SELECT']).replace("DISTINCT,", "DISTINCT"),
+                 "FROM " + "\n".join(self._query['FROM']),
+                 ("WHERE " + "\n".join(self._query['WHERE'])) if self._query['WHERE'] else "",
+                 ("GROUP BY " + ", ".join(self._query['GROUP BY'])) if self._query['GROUP BY'] else "",
+                 ("ORDER BY " + ", ".join(self._query['ORDER BY'])) if self._query['ORDER BY'] else "",
                  ("LIMIT " + str(self._query['LIMIT'])) if self._query['LIMIT'] != -1 else ""]
         return "\n".join([x for x in parts if x != ""])
